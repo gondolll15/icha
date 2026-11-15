@@ -1,0 +1,2023 @@
+/* =========================================
+   BIRTHDAY WEBSITE
+   COMPLETE CSS
+   DARK ROMANTIC + 3D ROTATING COLLAGE
+========================================= */
+
+
+/* =========================================
+   1. ROOT & RESET
+========================================= */
+
+:root {
+    --bg: #10000e;
+    --pink: #e98ac0;
+    --red: #ff3045;
+    --white: #fffafa;
+    --glass: rgba(255, 255, 255, 0.075);
+    --border: rgba(255, 255, 255, 0.13);
+    --muted: #8b7585;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background:
+        radial-gradient(ellipse at 50% 45%, #260b20 0%, transparent 65%),
+        linear-gradient(140deg, #13000f, #09000e 75%);
+
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+button {
+    font: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#app {
+    width: 100%;
+    min-height: 100svh;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* =========================================
+   2. SCREEN
+========================================= */
+
+.screen {
+    display: none;
+    width: 100%;
+    min-height: 100svh;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 30px 20px;
+    animation: screenAppear 1s ease both;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes screenAppear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   3. GLASS EFFECT
+========================================= */
+
+.glass {
+    background: var(--glass);
+    border: 1px solid var(--border);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.025),
+        0 15px 50px rgba(0,0,0,0.12);
+}
+
+
+/* =========================================
+   4. LOVE MODE
+========================================= */
+
+#loveScreen {
+    padding: 24px;
+}
+
+.love-card {
+    width: min(640px, 100%);
+    min-height: 710px;
+    border-radius: 90px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 75px;
+    color: #766174;
+}
+
+.big-heart {
+    width: 155px;
+    height: 155px;
+    color: #4d3047;
+}
+
+.love-card h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(65px, 11vw, 105px);
+    font-weight: 400;
+    line-height: 1;
+}
+
+
+/* LOVE TOGGLE */
+
+.toggle {
+    width: 245px;
+    height: 110px;
+
+    border: none;
+    border-radius: 100px;
+
+    background: rgba(160, 112, 145, 0.2);
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+    padding: 10px;
+
+    transition: 0.5s;
+
+    z-index: 20;
+    pointer-events: auto;
+    touch-action: manipulation;
+}
+
+.toggle * {
+    pointer-events: none;
+}
+
+.toggle-circle {
+    height: 90px;
+    width: 90px;
+
+    border-radius: 50%;
+
+    background: white;
+    color: #c7cdd0;
+
+    display: grid;
+    place-items: center;
+
+    transition:
+        transform 0.55s cubic-bezier(.2,.8,.2,1);
+
+    box-shadow: 0 4px 20px rgba(0,0,0,.15);
+
+    z-index: 2;
+}
+
+.toggle-circle svg {
+    width: 40px;
+    height: 40px;
+}
+
+.toggle-text {
+    position: absolute;
+    right: 45px;
+
+    font-size: 18px;
+    letter-spacing: 4px;
+    font-weight: 700;
+
+    color: #8e7488;
+
+    transition: 0.4s;
+}
+
+.toggle.on {
+    background: rgba(244, 44, 100, .4);
+}
+
+.toggle.on .toggle-circle {
+    transform: translateX(135px);
+    color: #ed4775;
+}
+
+.toggle.on .toggle-text {
+    right: auto;
+    left: 38px;
+    color: white;
+}
+
+
+/* =========================================
+   5. TIC TAC TOE
+========================================= */
+
+.game-content {
+    width: min(580px, 100%);
+    text-align: center;
+}
+
+.game-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 9vw, 76px);
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 70px;
+}
+
+.game-board {
+    width: 100%;
+    aspect-ratio: 1;
+    max-height: 580px;
+
+    border-radius: 42px;
+    padding: 28px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.cell {
+    min-width: 0;
+    min-height: 0;
+
+    border: 2px solid rgba(255,255,255,.09);
+    border-radius: 32px;
+
+    background: rgba(255,255,255,.10);
+
+    display: grid;
+    place-items: center;
+
+    cursor: pointer;
+    color: white;
+
+    transition:
+        background .3s,
+        transform .2s;
+}
+
+.cell:active {
+    transform: scale(.94);
+}
+
+.cell:disabled {
+    cursor: default;
+}
+
+.x-symbol {
+    font-size: clamp(48px, 10vw, 85px);
+    font-weight: 300;
+    color: #eee7ed;
+}
+
+.o-symbol {
+    font-size: clamp(48px, 10vw, 85px);
+    font-weight: 300;
+    color: #cf82b7;
+}
+
+.cell.winner-cell {
+    background: rgba(255, 40, 65, .2);
+
+    box-shadow:
+        0 0 35px rgba(255, 30, 65, .2);
+}
+
+.game-status {
+    margin-top: 25px;
+    color: #cba9c0;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.replay-btn {
+    margin-top: 18px;
+
+    background: transparent;
+    border: 1px solid var(--border);
+
+    color: #cba9c0;
+
+    padding: 10px 25px;
+    border-radius: 30px;
+
+    cursor: pointer;
+    display: none;
+}
+
+
+/* =========================================
+   6. WINNER
+========================================= */
+
+.winner-content {
+    width: min(580px, 100%);
+    text-align: center;
+}
+
+.winner-content h1,
+.winner-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(55px, 10vw, 75px);
+    font-weight: 500;
+    line-height: 1.05;
+}
+
+.winner-board {
+    margin: 75px auto 100px;
+
+    width: 100%;
+    aspect-ratio: 1;
+
+    border-radius: 42px;
+    padding: 28px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.winner-cell {
+    background: rgba(255,255,255,.10);
+    border: 2px solid rgba(255,255,255,.08);
+
+    border-radius: 32px;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 65px;
+}
+
+.heart-symbol {
+    color: #ff3045;
+    font-size: 75px;
+
+    text-shadow: 0 0 35px #ff3045;
+
+    animation: heartbeat 1s infinite;
+}
+
+.tiny-heart {
+    color: #ff3045;
+    font-size: 15px;
+}
+
+.winner-cell .o-symbol {
+    font-size: 75px;
+}
+
+@keyframes heartbeat {
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+
+/* =========================================
+   7. LOVE INTENSITY
+========================================= */
+
+.intensity-content {
+    width: min(620px, 100%);
+}
+
+.gauge {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.gauge svg {
+    width: 100%;
+    overflow: visible;
+}
+
+.gauge-track,
+.gauge-progress {
+    fill: none;
+    stroke-width: 18;
+    stroke-linecap: butt;
+}
+
+.gauge-track {
+    stroke: rgba(255,255,255,.08);
+}
+
+.gauge-progress {
+    stroke: #ff344d;
+
+    stroke-dasharray: 424.1;
+    stroke-dashoffset: 424.1;
+
+    transition: stroke-dashoffset 4s ease;
+
+    filter: drop-shadow(0 0 8px #ff3045);
+}
+
+.gauge-pointer {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 40px solid #ff3045;
+
+    left: 50%;
+    top: 3%;
+
+    transform: translateX(-50%);
+
+    filter:
+        drop-shadow(0 5px 12px rgba(255,40,60,.3));
+}
+
+.gauge-number {
+    position: absolute;
+
+    top: 38%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(75px, 15vw, 110px);
+    font-weight: 700;
+}
+
+.gauge-number small {
+    font-size: .48em;
+    color: #ff6072;
+}
+
+.gauge p {
+    position: absolute;
+
+    top: 75%;
+    width: 100%;
+
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 6vw, 48px);
+
+    font-style: italic;
+    letter-spacing: 2px;
+
+    color: #b99aaf;
+}
+
+.progress-track {
+    height: 15px;
+    width: 100%;
+
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.1);
+
+    border-radius: 30px;
+    overflow: hidden;
+
+    margin-top: 80px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+
+    background:
+        linear-gradient(90deg, #ff3045, #e92baf);
+
+    transition: width 4s ease;
+
+    box-shadow: 0 0 15px #ff3045;
+}
+
+
+/* =========================================
+   8. GREETING
+========================================= */
+
+.greeting-content {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+    text-align: center;
+
+    width: 100%;
+}
+
+.greeting-content h1 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(65px, 11vw, 110px);
+    font-weight: 500;
+
+    line-height: 1.05;
+    white-space: pre-line;
+}
+
+.typing-cursor {
+    height: 90px;
+    width: 12px;
+
+    background: #a51a40;
+
+    margin-left: 10px;
+
+    animation: blink .8s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   9. GALLERY HEADING
+========================================= */
+
+#galleryScreen {
+    min-height: 100svh;
+
+    flex-direction: column;
+    justify-content: flex-start;
+
+    padding: 30px 15px 25px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-heading {
+    text-align: center;
+    z-index: 3;
+    flex-shrink: 0;
+}
+
+.gallery-heading p {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: #b982a7;
+}
+
+.gallery-heading h1 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 400;
+
+    margin-top: 10px;
+}
+
+
+/* =========================================
+   10. 3D ROTATING PHOTO GALLERY
+   COLLAGE LAYOUT
+========================================= */
+
+#photoGallery {
+    position: relative;
+
+    width: 100%;
+    height: 75vh;
+    min-height: 480px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    perspective: 1200px;
+    transform-style: preserve-3d;
+
+    overflow: visible;
+}
+
+/* BAGIAN GALERI YANG BERPUTAR */
+
+.photo-carousel {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 155px;
+
+    align-content: center;
+    justify-items: center;
+
+    gap: 14px;
+    padding: 15px;
+
+    transform-style: preserve-3d;
+    transform-origin: center center;
+
+    animation: rotateGallery 40s linear infinite;
+}
+
+/* PUTARAN 360 DERAJAT */
+
+@keyframes rotateGallery {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+/* FRAME FOTO */
+
+#photoGallery .polaroid {
+    position: relative;
+
+    width: 125px;
+    height: 145px;
+
+    padding: 5px;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    background: #eee9e8;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.4),
+        0 0 15px rgba(255,255,255,.1);
+
+    cursor: pointer;
+
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+
+    transform-style: preserve-3d;
+
+    transition:
+        filter .3s ease,
+        box-shadow .3s ease;
+}
+
+/* FOTO */
+
+#photoGallery .polaroid img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+}
+
+/* VARIASI POSISI FOTO */
+
+#photoGallery .polaroid:nth-child(4n + 1) {
+    transform: translateY(25px);
+}
+
+#photoGallery .polaroid:nth-child(4n + 2) {
+    transform: translateY(-25px);
+}
+
+#photoGallery .polaroid:nth-child(4n + 3) {
+    transform: translateY(10px);
+}
+
+#photoGallery .polaroid:nth-child(4n) {
+    transform: translateY(-10px);
+}
+
+/* EFEK FOTO */
+
+#photoGallery .polaroid:hover {
+    filter: brightness(1.15);
+
+    box-shadow:
+        0 0 30px rgba(255,150,200,.5),
+        0 12px 35px rgba(0,0,0,.5);
+}
+
+/* PAUSE KETIKA DIKLIK */
+
+.photo-carousel:active {
+    animation-play-state: paused;
+}
+
+
+/* =========================================
+   11. GALLERY FOOTER
+========================================= */
+
+.gallery-footer {
+    text-align: center;
+
+    margin-top: 5px;
+
+    color: #b99aaf;
+
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+
+    z-index: 3;
+    flex-shrink: 0;
+}
+
+.music-button {
+    margin-top: 18px;
+
+    background: rgba(255,255,255,.08);
+    border: 1px solid var(--border);
+
+    color: white;
+
+    padding: 12px 25px;
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    letter-spacing: 1px;
+
+    transition: .3s;
+}
+
+.music-button:hover {
+    background: rgba(255,50,100,.2);
+}
+
+
+/* =========================================
+   12. LIGHTBOX
+========================================= */
+
+.lightbox {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(8,0,8,.94);
+
+    z-index: 100;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+}
+
+.lightbox.show {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: min(90vw, 500px);
+    max-height: 80svh;
+
+    object-fit: contain;
+
+    padding: 10px 10px 30px;
+
+    background: #eee9e8;
+
+    border-radius: 8px;
+
+    animation: zoomIn .3s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.lightbox-close {
+    position: absolute;
+
+    top: 25px;
+    right: 25px;
+
+    font-size: 42px;
+
+    color: white;
+
+    border: none;
+    background: none;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   13. MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .screen {
+        padding: 20px;
+    }
+
+    .love-card {
+        min-height: min(710px, 76svh);
+        border-radius: 60px;
+        gap: 65px;
+    }
+
+    .big-heart {
+        width: 140px;
+        height: 140px;
+    }
+
+    .toggle {
+        width: 245px;
+        height: 110px;
+    }
+
+    .game-title {
+        margin-bottom: 70px;
+    }
+
+    .game-board {
+        padding: 20px;
+        gap: 14px;
+        border-radius: 35px;
+    }
+
+    .cell {
+        border-radius: 25px;
+    }
+
+    .winner-board {
+        padding: 20px;
+        gap: 14px;
+
+        border-radius: 35px;
+
+        margin: 65px auto 85px;
+    }
+
+    .winner-cell {
+        border-radius: 25px;
+    }
+
+    .progress-track {
+        margin-top: 60px;
+    }
+
+    .typing-cursor {
+        height: 65px;
+        width: 8px;
+    }
+
+    #galleryScreen {
+        padding: 25px 5px;
+    }
+
+    #photoGallery {
+        height: 70svh;
+        min-height: 430px;
+        perspective: 900px;
+    }
+
+    .photo-carousel {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-rows: 120px;
+
+        gap: 10px;
+        padding: 8px;
+
+        animation-duration: 45s;
+    }
+
+    #photoGallery .polaroid {
+        width: min(100%, 105px);
+        height: 110px;
+
+        padding: 4px;
+        border-radius: 22px;
+    }
+
+    #photoGallery .polaroid img {
+        border-radius: 18px;
+    }
+
+    .gallery-footer {
+        font-size: 20px;
+    }
+}
+
+
+/* =========================================
+   14. SMALL MOBILE
+========================================= */
+
+@media (max-width: 360px) {
+
+    .game-board {
+        gap: 9px;
+        padding: 13px;
+    }
+
+    #photoGallery {
+        min-height: 400px;
+    }
+
+    .photo-carousel {
+        grid-auto-rows: 105px;
+        gap: 7px;
+        padding: 5px;
+    }
+
+    #photoGallery .polaroid {
+        width: min(100%, 92px);
+        height: 95px;
+
+        border-radius: 18px;
+    }
+
+    #photoGallery .polaroid img {
+        border-radius: 14px;
+    }
+}
+
+
+/* =========================================
+   15. TABLET
+========================================= */
+
+@media (min-width: 601px) and (max-width: 899px) {
+
+    #photoGallery {
+        height: 75vh;
+        min-height: 550px;
+        perspective: 1100px;
+    }
+
+    .photo-carousel {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: 150px;
+
+        gap: 12px;
+
+        animation-duration: 45s;
+    }
+
+    #photoGallery .polaroid {
+        width: 135px;
+        height: 140px;
+    }
+}
+
+
+/* =========================================
+   16. DESKTOP
+========================================= */
+
+@media (min-width: 900px) {
+
+    #galleryScreen {
+        justify-content: flex-start;
+        padding-top: 35px;
+    }
+
+    #photoGallery {
+        width: 100%;
+        height: 75vh;
+        min-height: 600px;
+        perspective: 1500px;
+    }
+
+    .photo-carousel {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-auto-rows: 180px;
+
+        gap: 20px;
+
+        animation-duration: 50s;
+    }
+
+    #photoGallery .polaroid {
+        width: 170px;
+        height: 165px;
+
+        padding: 7px;
+        border-radius: 25px;
+    }
+
+    #photoGallery .polaroid img {
+        border-radius: 19px;
+    }
+}
+
+
+/* =========================================
+   17. REDUCE MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .photo-carousel {
+        animation: none;
+    }
+}
+
+
+/* =========================================
+   END OF CSS
+========================================= */
+/* =========================================
+   EXTRA DESIGN - SOFT COQUETTE AESTHETIC
+   ADDITIONAL CSS - DESKTOP & MOBILE
+========================================= */
+
+:root {
+    --soft-pink: #f5b6cf;
+    --rose: #d77b9e;
+    --cream: #fff1f5;
+    --wine: #481c35;
+}
+
+/* BACKGROUND UPGRADE */
+
+body {
+    background:
+        radial-gradient(ellipse at 15% 15%, rgba(211, 112, 160, .19), transparent 40%),
+        radial-gradient(ellipse at 85% 80%, rgba(137, 65, 111, .23), transparent 45%),
+        linear-gradient(135deg, #190a19, #32152d 50%, #10000e);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: .3;
+    background-image:
+        radial-gradient(circle at 20% 30%, #ffd8e8 1px, transparent 2px),
+        radial-gradient(circle at 80% 20%, #ffd8e8 1px, transparent 2px),
+        radial-gradient(circle at 65% 75%, #ffd8e8 1px, transparent 2px),
+        radial-gradient(circle at 35% 85%, #ffd8e8 1px, transparent 2px);
+    background-size: 180px 180px;
+    animation: dreamyStars 12s linear infinite alternate;
+}
+
+@keyframes dreamyStars {
+    from { opacity: .15; }
+    to { opacity: .55; }
+}
+
+#app {
+    isolation: isolate;
+}
+
+.screen {
+    z-index: 1;
+}
+
+/* SOFT LIGHT EFFECT */
+
+.screen::before {
+    content: "✧";
+    position: absolute;
+    top: 8%;
+    left: 9%;
+    color: rgba(255, 205, 225, .55);
+    font-size: 35px;
+    pointer-events: none;
+    animation: floatingStar 5s ease-in-out infinite;
+}
+
+.screen::after {
+    content: "♡";
+    position: absolute;
+    bottom: 9%;
+    right: 9%;
+    color: rgba(255, 160, 200, .35);
+    font-size: 55px;
+    pointer-events: none;
+    animation: floatingStar 6s ease-in-out infinite reverse;
+}
+
+@keyframes floatingStar {
+    0%, 100% { transform: translateY(0) rotate(-8deg); }
+    50% { transform: translateY(-18px) rotate(10deg); }
+}
+
+/* VERIFICATION CARD */
+
+.love-card {
+    min-height: 560px;
+    max-width: 570px;
+    border-radius: 45px;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 218, 235, .12),
+        rgba(255, 255, 255, .035)
+    );
+    border: 1px solid rgba(255, 210, 230, .22);
+    box-shadow: 0 25px 90px rgba(0, 0, 0, .28);
+    gap: 65px;
+}
+
+.love-card h1 {
+    color: #f8dce9;
+    text-shadow: 0 5px 30px rgba(255, 140, 190, .3);
+}
+
+.toggle {
+    box-shadow: 0 10px 35px rgba(0, 0, 0, .2);
+}
+
+.toggle.on {
+    box-shadow: 0 0 35px rgba(255, 80, 140, .35);
+}
+
+/* GAME DESIGN */
+
+.game-title {
+    color: #ffe6f0;
+    text-shadow: 0 5px 30px rgba(255, 140, 190, .2);
+}
+
+.game-board {
+    background: rgba(255, 220, 238, .055);
+    border: 1px solid rgba(255, 210, 230, .2);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, .25);
+}
+
+.cell {
+    background: rgba(255, 225, 240, .07);
+    border-color: rgba(255, 215, 235, .15);
+}
+
+.cell:hover:not(:disabled) {
+    background: rgba(255, 170, 210, .17);
+    border-color: rgba(255, 190, 220, .45);
+}
+
+.o-symbol {
+    color: #ff9fc9;
+    text-shadow: 0 0 20px rgba(255, 130, 190, .4);
+}
+
+.x-symbol {
+    color: #fff0f5;
+}
+
+.game-status {
+    color: #f0bad2;
+}
+
+/* WINNER DESIGN */
+
+.winner-content h1 {
+    color: #ffe3ef;
+}
+
+.winner-board {
+    background: rgba(255, 220, 238, .055);
+    border-color: rgba(255, 210, 230, .2);
+}
+
+.winner-cell {
+    background: rgba(255, 220, 238, .08);
+}
+
+/* INTENSITY */
+
+.gauge-number {
+    color: #ffe6f0;
+    text-shadow: 0 0 35px rgba(255, 100, 160, .2);
+}
+
+.gauge-progress {
+    stroke: #ff8eb9;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #e879a9, #ffbad5, #ff729f);
+}
+
+/* GREETING */
+
+.greeting-content h1 {
+    color: #ffe2ed;
+    text-shadow:
+        0 0 15px rgba(255, 170, 205, .35),
+        0 0 55px rgba(255, 100, 160, .2);
+}
+
+.typing-cursor {
+    background: #ff9fc9;
+}
+
+/* GALLERY */
+
+#galleryScreen {
+    background:
+        radial-gradient(ellipse at 50% 45%, rgba(190, 105, 155, .13), transparent 65%);
+}
+
+.gallery-heading p {
+    color: #e9a8c9;
+}
+
+.gallery-heading h1 {
+    color: #ffe5ef;
+    text-shadow: 0 5px 25px rgba(255, 150, 200, .2);
+}
+
+/* PERSONAL BIRTHDAY MESSAGE */
+
+.birthday-note {
+    width: min(650px, 92%);
+    margin: 24px auto 10px;
+    padding: 18px 25px;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+
+    background: rgba(255, 226, 239, .09);
+    border: 1px solid rgba(255, 205, 225, .22);
+    border-radius: 22px;
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .16);
+
+    animation: noteAppear 1.2s ease both;
+}
+
+.birthday-note .note-decoration {
+    display: block;
+    color: #ffb4d0;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.birthday-note p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 2.5vw, 21px);
+    line-height: 1.65;
+    color: #ffe6f0;
+}
+
+.birthday-note .note-signature {
+    display: block;
+    margin-top: 10px;
+    color: #f2a9ca;
+    font-style: italic;
+}
+
+@keyframes noteAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* POLAROID UPGRADE */
+
+#photoGallery .polaroid {
+    border: 5px solid #fff5f8;
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, .35),
+        0 0 25px rgba(255, 160, 200, .12);
+}
+
+#photoGallery .polaroid:hover {
+    transform: translateY(-8px) scale(1.06);
+    z-index: 5;
+}
+
+/* FOOTER */
+
+.gallery-footer {
+    color: #f3c4d9;
+}
+
+.music-button {
+    background: rgba(255, 190, 220, .1);
+    border-color: rgba(255, 190, 220, .3);
+    color: #ffe7f0;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, .15);
+}
+
+.music-button:hover {
+    background: rgba(255, 120, 180, .22);
+    transform: translateY(-3px);
+}
+
+/* LIGHTBOX */
+
+.lightbox {
+    background: rgba(15, 3, 15, .96);
+    backdrop-filter: blur(12px);
+}
+
+.lightbox-close {
+    color: #ffc2dc;
+}
+
+/* ACCESSIBILITY */
+
+button:focus-visible {
+    outline: 2px solid #ffbad5;
+    outline-offset: 4px;
+}
+
+/* TABLET & MOBILE */
+
+@media (max-width: 600px) {
+
+    .love-card {
+        min-height: min(560px, 78svh);
+        border-radius: 35px;
+        gap: 55px;
+        padding: 30px 15px;
+    }
+
+    .love-card h1 {
+        font-size: clamp(55px, 13vw, 80px);
+    }
+
+    .game-title {
+        font-size: clamp(42px, 11vw, 60px);
+        margin-bottom: 45px;
+    }
+
+    .game-board {
+        padding: 15px;
+        gap: 10px;
+        border-radius: 28px;
+    }
+
+    .cell {
+        border-radius: 20px;
+    }
+
+    .birthday-note {
+        margin: 17px auto 5px;
+        padding: 15px 17px;
+        border-radius: 18px;
+    }
+
+    .birthday-note p {
+        font-size: 17px;
+    }
+
+    #photoGallery {
+        height: 58svh;
+        min-height: 340px;
+        max-height: 510px;
+    }
+
+    .gallery-heading h1 {
+        font-size: 34px;
+    }
+
+    .gallery-footer {
+        font-size: 18px;
+        padding-bottom: 12px;
+    }
+
+    .screen::before {
+        left: 4%;
+        top: 5%;
+        font-size: 25px;
+    }
+
+    .screen::after {
+        right: 4%;
+        bottom: 5%;
+        font-size: 38px;
+    }
+}
+
+/* SMALL PHONES */
+
+@media (max-width: 380px) {
+
+    .birthday-note {
+        padding: 12px;
+    }
+
+    .birthday-note p {
+        font-size: 15px;
+    }
+
+    .gallery-heading h1 {
+        font-size: 29px;
+    }
+
+    #photoGallery {
+        min-height: 310px;
+    }
+}
+
+/* DESKTOP */
+
+@media (min-width: 900px) {
+
+    .birthday-note {
+        margin-top: 25px;
+        margin-bottom: 10px;
+    }
+
+    #photoGallery {
+        max-width: 1250px;
+    }
+
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    .screen::before,
+    .screen::after,
+    .birthday-note {
+        animation: none !important;
+    }
+}
+/* =========================================
+   EXTRA DESIGN - SOFT COQUETTE AESTHETIC
+   ADDITIONAL CSS - DESKTOP & MOBILE
+========================================= */
+
+:root {
+    --soft-pink: #f5b6cf;
+    --rose: #d77b9e;
+    --cream: #fff1f5;
+    --wine: #481c35;
+}
+
+/* BACKGROUND UPGRADE */
+
+body {
+    background:
+        radial-gradient(ellipse at 15% 15%, rgba(211, 112, 160, .19), transparent 40%),
+        radial-gradient(ellipse at 85% 80%, rgba(137, 65, 111, .23), transparent 45%),
+        linear-gradient(135deg, #190a19, #32152d 50%, #10000e);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: .3;
+    background-image:
+        radial-gradient(circle at 20% 30%, #ffd8e8 1px, transparent 2px),
+        radial-gradient(circle at 80% 20%, #ffd8e8 1px, transparent 2px),
+        radial-gradient(circle at 65% 75%, #ffd8e8 1px, transparent 2px),
+        radial-gradient(circle at 35% 85%, #ffd8e8 1px, transparent 2px);
+    background-size: 180px 180px;
+    animation: dreamyStars 12s linear infinite alternate;
+}
+
+@keyframes dreamyStars {
+    from { opacity: .15; }
+    to { opacity: .55; }
+}
+
+#app {
+    isolation: isolate;
+}
+
+.screen {
+    z-index: 1;
+}
+
+/* SOFT LIGHT EFFECT */
+
+.screen::before {
+    content: "✧";
+    position: absolute;
+    top: 8%;
+    left: 9%;
+    color: rgba(255, 205, 225, .55);
+    font-size: 35px;
+    pointer-events: none;
+    animation: floatingStar 5s ease-in-out infinite;
+}
+
+.screen::after {
+    content: "♡";
+    position: absolute;
+    bottom: 9%;
+    right: 9%;
+    color: rgba(255, 160, 200, .35);
+    font-size: 55px;
+    pointer-events: none;
+    animation: floatingStar 6s ease-in-out infinite reverse;
+}
+
+@keyframes floatingStar {
+    0%, 100% { transform: translateY(0) rotate(-8deg); }
+    50% { transform: translateY(-18px) rotate(10deg); }
+}
+
+/* VERIFICATION CARD */
+
+.love-card {
+    min-height: 560px;
+    max-width: 570px;
+    border-radius: 45px;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 218, 235, .12),
+        rgba(255, 255, 255, .035)
+    );
+    border: 1px solid rgba(255, 210, 230, .22);
+    box-shadow: 0 25px 90px rgba(0, 0, 0, .28);
+    gap: 65px;
+}
+
+.love-card h1 {
+    color: #f8dce9;
+    text-shadow: 0 5px 30px rgba(255, 140, 190, .3);
+}
+
+.toggle {
+    box-shadow: 0 10px 35px rgba(0, 0, 0, .2);
+}
+
+.toggle.on {
+    box-shadow: 0 0 35px rgba(255, 80, 140, .35);
+}
+
+/* GAME DESIGN */
+
+.game-title {
+    color: #ffe6f0;
+    text-shadow: 0 5px 30px rgba(255, 140, 190, .2);
+}
+
+.game-board {
+    background: rgba(255, 220, 238, .055);
+    border: 1px solid rgba(255, 210, 230, .2);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, .25);
+}
+
+.cell {
+    background: rgba(255, 225, 240, .07);
+    border-color: rgba(255, 215, 235, .15);
+}
+
+.cell:hover:not(:disabled) {
+    background: rgba(255, 170, 210, .17);
+    border-color: rgba(255, 190, 220, .45);
+}
+
+.o-symbol {
+    color: #ff9fc9;
+    text-shadow: 0 0 20px rgba(255, 130, 190, .4);
+}
+
+.x-symbol {
+    color: #fff0f5;
+}
+
+.game-status {
+    color: #f0bad2;
+}
+
+/* WINNER DESIGN */
+
+.winner-content h1 {
+    color: #ffe3ef;
+}
+
+.winner-board {
+    background: rgba(255, 220, 238, .055);
+    border-color: rgba(255, 210, 230, .2);
+}
+
+.winner-cell {
+    background: rgba(255, 220, 238, .08);
+}
+
+/* INTENSITY */
+
+.gauge-number {
+    color: #ffe6f0;
+    text-shadow: 0 0 35px rgba(255, 100, 160, .2);
+}
+
+.gauge-progress {
+    stroke: #ff8eb9;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #e879a9, #ffbad5, #ff729f);
+}
+
+/* GREETING */
+
+.greeting-content h1 {
+    color: #ffe2ed;
+    text-shadow:
+        0 0 15px rgba(255, 170, 205, .35),
+        0 0 55px rgba(255, 100, 160, .2);
+}
+
+.typing-cursor {
+    background: #ff9fc9;
+}
+
+/* GALLERY */
+
+#galleryScreen {
+    background:
+        radial-gradient(ellipse at 50% 45%, rgba(190, 105, 155, .13), transparent 65%);
+}
+
+.gallery-heading p {
+    color: #e9a8c9;
+}
+
+.gallery-heading h1 {
+    color: #ffe5ef;
+    text-shadow: 0 5px 25px rgba(255, 150, 200, .2);
+}
+
+/* PERSONAL BIRTHDAY MESSAGE */
+
+.birthday-note {
+    width: min(650px, 92%);
+    margin: 24px auto 10px;
+    padding: 18px 25px;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+
+    background: rgba(255, 226, 239, .09);
+    border: 1px solid rgba(255, 205, 225, .22);
+    border-radius: 22px;
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .16);
+
+    animation: noteAppear 1.2s ease both;
+}
+
+.birthday-note .note-decoration {
+    display: block;
+    color: #ffb4d0;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.birthday-note p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 2.5vw, 21px);
+    line-height: 1.65;
+    color: #ffe6f0;
+}
+
+.birthday-note .note-signature {
+    display: block;
+    margin-top: 10px;
+    color: #f2a9ca;
+    font-style: italic;
+}
+
+@keyframes noteAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* POLAROID UPGRADE */
+
+#photoGallery .polaroid {
+    border: 5px solid #fff5f8;
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, .35),
+        0 0 25px rgba(255, 160, 200, .12);
+}
+
+#photoGallery .polaroid:hover {
+    transform: translateY(-8px) scale(1.06);
+    z-index: 5;
+}
+
+/* FOOTER */
+
+.gallery-footer {
+    color: #f3c4d9;
+}
+
+.music-button {
+    background: rgba(255, 190, 220, .1);
+    border-color: rgba(255, 190, 220, .3);
+    color: #ffe7f0;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, .15);
+}
+
+.music-button:hover {
+    background: rgba(255, 120, 180, .22);
+    transform: translateY(-3px);
+}
+
+/* LIGHTBOX */
+
+.lightbox {
+    background: rgba(15, 3, 15, .96);
+    backdrop-filter: blur(12px);
+}
+
+.lightbox-close {
+    color: #ffc2dc;
+}
+
+/* ACCESSIBILITY */
+
+button:focus-visible {
+    outline: 2px solid #ffbad5;
+    outline-offset: 4px;
+}
+
+/* TABLET & MOBILE */
+
+@media (max-width: 600px) {
+
+    .love-card {
+        min-height: min(560px, 78svh);
+        border-radius: 35px;
+        gap: 55px;
+        padding: 30px 15px;
+    }
+
+    .love-card h1 {
+        font-size: clamp(55px, 13vw, 80px);
+    }
+
+    .game-title {
+        font-size: clamp(42px, 11vw, 60px);
+        margin-bottom: 45px;
+    }
+
+    .game-board {
+        padding: 15px;
+        gap: 10px;
+        border-radius: 28px;
+    }
+
+    .cell {
+        border-radius: 20px;
+    }
+
+    .birthday-note {
+        margin: 17px auto 5px;
+        padding: 15px 17px;
+        border-radius: 18px;
+    }
+
+    .birthday-note p {
+        font-size: 17px;
+    }
+
+    #photoGallery {
+        height: 58svh;
+        min-height: 340px;
+        max-height: 510px;
+    }
+
+    .gallery-heading h1 {
+        font-size: 34px;
+    }
+
+    .gallery-footer {
+        font-size: 18px;
+        padding-bottom: 12px;
+    }
+
+    .screen::before {
+        left: 4%;
+        top: 5%;
+        font-size: 25px;
+    }
+
+    .screen::after {
+        right: 4%;
+        bottom: 5%;
+        font-size: 38px;
+    }
+}
+
+/* SMALL PHONES */
+
+@media (max-width: 380px) {
+
+    .birthday-note {
+        padding: 12px;
+    }
+
+    .birthday-note p {
+        font-size: 15px;
+    }
+
+    .gallery-heading h1 {
+        font-size: 29px;
+    }
+
+    #photoGallery {
+        min-height: 310px;
+    }
+}
+
+/* DESKTOP */
+
+@media (min-width: 900px) {
+
+    .birthday-note {
+        margin-top: 25px;
+        margin-bottom: 10px;
+    }
+
+    #photoGallery {
+        max-width: 1250px;
+    }
+
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    .screen::before,
+    .screen::after,
+    .birthday-note {
+        animation: none !important;
+    }
+}
+/* HAPPY BIRTHDAY CLICK EFFECT */
+
+#greetingText {
+    cursor: pointer;
+    transition: transform .4s, color .4s, text-shadow .4s;
+    user-select: none;
+}
+
+#greetingText:hover {
+    color: #ffb6d2;
+    transform: scale(1.06);
+    text-shadow: 0 0 35px rgba(255, 130, 190, .7);
+}
+
+#greetingText:active {
+    transform: scale(.95);
+}
+
+.birthday-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(15, 0, 14, .88);
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    visibility: hidden;
+    transition: .4s;
+}
+
+.birthday-popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-card {
+    width: min(440px, 100%);
+    padding: 40px 25px;
+    text-align: center;
+    border-radius: 30px;
+    background: linear-gradient(145deg, #512642, #281326);
+    border: 1px solid rgba(255, 190, 220, .35);
+    box-shadow: 0 20px 80px rgba(0,0,0,.4);
+    transform: translateY(30px) scale(.9);
+    transition: .5s;
+}
+
+.birthday-popup.show .popup-card {
+    transform: translateY(0) scale(1);
+}
+
+.popup-card .popup-heart {
+    font-size: 55px;
+    animation: heartbeat 1.2s infinite;
+}
+
+.popup-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    color: #ffdce9;
+    font-size: 42px;
+    margin: 15px 0;
+}
+
+.popup-card p {
+    color: #f6d6e5;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.popup-close {
+    margin-top: 25px;
+    padding: 12px 28px;
+    border: 1px solid #f5b6cf;
+    border-radius: 30px;
+    background: rgba(255,255,255,.08);
+    color: white;
+    cursor: pointer;
+}
+
+.popup-close:hover {
+    background: rgba(255,150,195,.25);
+}
+
+.floating-heart {
+    position: fixed;
+    z-index: 210;
+    pointer-events: none;
+    color: #ff9fc9;
+    font-size: 25px;
+    animation: heartFloat 2.5s ease-out forwards;
+}
+
+@keyframes heartFloat {
+    from {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg) scale(.7);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-180px) rotate(35deg) scale(1.5);
+    }
+}
+
+@media (max-width: 600px) {
+    .popup-card {
+        padding: 32px 20px;
+    }
+
+    .popup-card h2 {
+        font-size: 35px;
+    }
+}

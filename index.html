@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#10000e">
+    <meta name="description" content="A special Birthday Website">
+
+    <title>special</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main id="app">
+
+        <!-- =================================
+             HALAMAN 1: Birthdy MODE
+        ================================== -->
+
+        <section class="screen active" id="loveScreen">
+
+            <div class="love-card glass">
+
+                
+
+                <h1>Verifikasi</h1>
+
+                <button
+                    type="button"
+                    class="toggle"
+                    id="loveToggle"
+                    aria-label="Activate Love Mode"
+                >
+
+                    <span class="toggle-circle">
+                        
+                    </span>
+
+                    <span class="toggle-text">OFF</span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             HALAMAN 2: TIC TAC TOE
+        ================================== -->
+
+        <section class="screen" id="gameScreen">
+
+            <div class="game-content">
+
+                <h1 class="game-title">
+                    Let's play a little<br>
+                    game...
+                </h1>
+
+                <div class="game-board glass" id="gameBoard">
+
+                    <button type="button" class="cell" data-index="0"></button>
+                    <button type="button" class="cell" data-index="1"></button>
+                    <button type="button" class="cell" data-index="2"></button>
+
+                    <button type="button" class="cell" data-index="3"></button>
+                    <button type="button" class="cell" data-index="4"></button>
+                    <button type="button" class="cell" data-index="5"></button>
+
+                    <button type="button" class="cell" data-index="6"></button>
+                    <button type="button" class="cell" data-index="7"></button>
+                    <button type="button" class="cell" data-index="8"></button>
+
+                </div>
+
+                <p class="game-status" id="gameStatus">
+                    Your turn 
+                </p>
+
+                <button
+                    type="button"
+                    class="replay-btn"
+                    id="replayBtn"
+                >
+                    Play again
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             HALAMAN 3: WINNER
+        ================================== -->
+
+        <section class="screen" id="winnerScreen">
+
+            <div class="winner-content">
+
+                <h1>
+                    Kamu<br>
+                    Memenangkan
+                </h1>
+
+                <div class="winner-board glass">
+
+                    <div class="winner-cell winning">
+                        <span class="heart-symbol">O</span>
+                    </div>
+
+                    <div class="winner-cell"></div>
+
+                    <div class="winner-cell">
+                        <span class="o-symbol">O</span>
+                    </div>
+
+                    <div class="winner-cell">
+                        <span class="tiny-heart">O</span>
+                    </div>
+
+                    <div class="winner-cell"></div>
+
+                    <div class="winner-cell"></div>
+
+                    <div class="winner-cell">
+                        <span class="o-symbol">O</span>
+                    </div>
+
+                    <div class="winner-cell"></div>
+
+                    <div class="winner-cell">
+                        <span class="o-symbol">O</span>
+                    </div>
+
+                </div>
+
+                <h2></h2>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             HALAMAN 4: LOVE INTENSITY
+        ================================== -->
+
+        <section class="screen" id="intensityScreen">
+
+            <div class="intensity-content">
+
+                <div class="gauge">
+
+                    <svg viewBox="0 0 300 180">
+
+                        <path
+                            d="M 15 165 A 135 135 0 0 1 285 165"
+                            class="gauge-track"
+                        />
+
+                        <path
+                            d="M 15 165 A 135 135 0 0 1 285 165"
+                            class="gauge-progress"
+                            id="gaugeProgress"
+                        />
+
+                    </svg>
+
+                    <div
+                        class="gauge-pointer"
+                        id="gaugePointer"
+                    ></div>
+
+                    <div class="gauge-number">
+                        <span id="percentage">0</span>
+                        <small>%</small>
+                    </div>
+
+                    <p>Intensity</p>
+
+                </div>
+
+                <div class="progress-track">
+
+                    <div
+                        class="progress-fill"
+                        id="progressFill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             HALAMAN 5: HAPPY BIRTHDAY
+        ================================== -->
+
+        <section class="screen" id="greetingScreen">
+
+            <div class="greeting-content">
+
+                <h1 id="greetingText"></h1>
+
+                <span class="typing-cursor"></span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             HALAMAN 6: PHOTO GALLERY
+        ================================== -->
+
+        <section class="screen" id="galleryScreen">
+
+            <!-- JUDUL GALERI -->
+
+            <div class="gallery-heading">
+
+                <p>ICHA SLEBEW</p>
+
+                <h1>Little pieces of you</h1>
+
+            </div>
+
+
+            <!-- GALERI FOTO -->
+
+            <!--
+                Galeri akan dibuat otomatis oleh script.js.
+                Jangan menambahkan .photo-carousel secara manual.
+            -->
+
+            <div
+                class="photo-gallery"
+                id="photoGallery"
+            ></div>
+
+
+            <!-- FOOTER DAN TOMBOL MUSIK -->
+
+            <div class="gallery-footer">
+
+                <p>
+                    Every picture tells a story of you
+                </p>
+
+                <button
+                    type="button"
+                    id="musicButton"
+                    class="music-button"
+                    aria-label="Play or pause music"
+                >
+                    ♫ <span>Play Music</span>
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =================================
+         BACKGROUND MUSIC
+    ================================== -->
+
+    <audio
+        id="backgroundMusic"
+        loop
+        preload="auto"
+    ></audio>
+
+
+    <!-- =================================
+         LIGHTBOX FOTO
+    ================================== -->
+
+    <div
+        class="lightbox"
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Photo preview"
+    >
+
+        <button
+            type="button"
+            class="lightbox-close"
+            id="lightboxClose"
+            aria-label="Close photo"
+        >
+            ×
+        </button>
+
+        <img
+            src=""
+            alt="Our memory"
+            id="lightboxImage"
+        >
+
+    </div>
+
+
+    <!-- =================================
+         JAVASCRIPT
+    ================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
